@@ -179,6 +179,6 @@ Este plugin está licenciado bajo la [GNU General Public License v2.0](https://w
 
 ## 📞 Contacto
 
-Si tienes alguna pregunta, sugerencia o problema, no dudes en abrir un **Issue** en el repositorio o contactar al autor a través de tu correo electrónico: [tuemail@example.com](mailto:tuemail@example.com).
+Si tienes alguna pregunta, sugerencia o problema, no dudes en abrir un **Issue** en el repositorio.
 
 ---
