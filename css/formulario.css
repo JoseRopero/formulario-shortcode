@@ -1,0 +1,100 @@
+/* formulario.css */
+
+/* Contenedor del formulario */
+.mpp-form-container {
+    max-width: 600px;
+    margin: 0px auto;
+    padding: 25px;
+    border: 1px solid #ddd;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.checkbox-group {
+    display: flex;
+    align-items: center;
+}
+
+/* Estilos del formulario */
+.mpp-form {
+    margin-bottom: 15px;
+}
+
+.mpp-form label {
+    display: block;
+    font-weight: bold;
+}
+
+.mpp-form input[type="text"],
+.mpp-form input[type="email"],
+.mpp-form input[type="tel"],
+.mpp-form select,
+.mpp-form textarea {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.mpp-form textarea {
+    resize: vertical;
+}
+
+.mpp-form input[type="checkbox"],
+.mpp-form input[type="radio"] {
+    width: auto;
+    margin-right: 5px;
+}
+
+.mpp-form input[type="submit"] {
+    padding: 12px 25px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.mpp-form input[type="submit"]:hover {
+    background-color: #218838;
+}
+
+.mpp-mensaje-error {
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #f5c6cb;
+    border-radius: 4px;
+}
+
+.mpp-mensaje-exito {
+    background-color: #d4edda;
+    color: #155724;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #c3e6cb;
+    border-radius: 4px;
+}
+
+.button#add-field {
+    margin-top: 10px;
+}
+
+.checkbox-label {
+    margin-left: 10px;
+}
+
+/* Responsivo */
+@media (max-width: 600px) {
+    .mpp-form-container {
+        padding: 20px;
+    }
+
+    .mpp-form input[type="submit"] {
+        width: 100%;
+    }
+}

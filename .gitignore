@@ -1,0 +1,71 @@
+# ----------------------------
+# Archivos y carpetas generados por el sistema operativo
+# ----------------------------
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Icon?
+._*
+
+# ----------------------------
+# Archivos de logs y bases de datos
+# ----------------------------
+*.log
+*.sql
+*.sqlite
+
+# ----------------------------
+# Directorios de dependencias
+# ----------------------------
+/vendor/
+/node_modules/
+
+# ----------------------------
+# Archivos y carpetas de IDE y editores
+# ----------------------------
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+*.code-workspace
+
+# ----------------------------
+# Archivos de Composer (si usas Composer)
+/composer.lock
+
+# ----------------------------
+# Archivos de entorno y configuración sensible
+# ----------------------------
+.env
+.env.*
+*.env
+
+# ----------------------------
+# Archivos de compilación y build (si aplican)
+# ----------------------------
+/dist/
+/build/
+/public/css/*.min.css
+/public/js/*.min.js
+
+# ----------------------------
+# Archivos de respaldo
+# ----------------------------
+*~
+*.bak
+*.tmp
+*.swp
+
+# ----------------------------
+# Archivos comprimidos
+# ----------------------------
+*.zip
+*.tar.gz
+*.tgz
+
+# ----------------------------
+# Otros archivos y carpetas a ignorar
+# ----------------------------
+/tmp/
+/cache/
+/backup/
