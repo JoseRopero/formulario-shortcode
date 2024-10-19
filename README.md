@@ -130,22 +130,20 @@ plaintext
 - **Protección contra Spam:** Integra Google reCAPTCHA v2 y campos Honeypot para verificar que los usuarios son humanos.
 
 ## 📂 Estructura del Repositorio
-plaintext
-formulario-shortcode-mejorado/
-├── css/
-│   └── formulario.css
-├── includes/
-│   ├── funciones-tiempo-espera.php
-│   └── class-form-handler.php
-├── js/
-│   └── formulario.js
-├── templates/
-│   ├── formulario-template.php
-│   └── configuracion-template.php
-├── formulario-shortcode.php
-├── README.md
-├── LICENSE
-└── .gitignore
+formulario-shortcode-mejorado/  
+&emsp;css/  
+&emsp;&emsp;formulario.css  
+&emsp;includes/  
+&emsp;&emsp;funciones-tiempo-espera.php  
+&emsp;&emsp;class-form-handler.php  
+&emsp;js/  
+&emsp;&emsp;formulario.js  
+&emsp;templates/  
+&emsp;&emsp;formulario-template.php  
+formulario-shortcode.php  
+README.md  
+LICENSE  
+.gitignore
 ## 🤝 Contribuciones
 
 ¡Las contribuciones son bienvenidas! Si deseas mejorar este plugin, por favor sigue estos pasos:
