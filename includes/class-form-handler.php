@@ -27,7 +27,7 @@ class MPP_Form_Handler {
      * Crear tabla en la base de datos al activar el plugin
      */
     public function mpp_crear_tabla() {
-        global $wpdb;
+        global $wpdb;  //Objeto WordSpress para interactuar con la base de datos.
         $tabla_name = $wpdb->prefix . 'mpp_formularios';
         $charset_collate = $wpdb->get_charset_collate();
 
@@ -98,7 +98,7 @@ class MPP_Form_Handler {
      * Mostrar el formulario HTML mediante la plantilla
      */
     private function mpp_mostrar_formulario() {
-        // Obtener las claves de reCAPTCHA desde las opciones
+        // Obtener las claves de reCAPTCHA desde las opciones en WordPress.
         $site_key = get_option('mpp_site_key', '');
         error_log('Site Key obtenida: ' . $site_key);
 
@@ -125,14 +125,14 @@ class MPP_Form_Handler {
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['mpp_submit'])) {
             error_log('Inicio del procesamiento del formulario.');
     
-            // Verificar el nonce
+            // Verificar el nonce, valida un token de seguridad nonce para proteger contra ataques CSRF
             if (!isset($_POST['mpp_nonce']) || !wp_verify_nonce($_POST['mpp_nonce'], 'mpp_formulario_envio')) {
                 set_transient('mpp_message', '<div class="mpp-mensaje-error">' . __('Hubo un problema con tu envío. Por favor, intenta de nuevo.', 'formulario-shortcode') . '</div>', 60);
                 error_log('Nonce inválido.');
                 return; // No redirigir
             }
     
-            // Verificar el campo Honeypot
+            // Verificar el campo Honeypot, campo oculto para detectar bots.
             if (!empty($_POST['mpp_honeypot'])) {
                 set_transient('mpp_message', '<div class="mpp-mensaje-error">' . __('Se detectó un envío sospechoso.', 'formulario-shortcode') . '</div>', 60);
                 error_log('Campo Honeypot detectado.');
@@ -148,7 +148,7 @@ class MPP_Form_Handler {
     
             error_log('Verificación de reCAPTCHA en progreso.');
     
-            $recaptcha_response = sanitize_text_field($_POST['g-recaptcha-response']);
+            $recaptcha_response = sanitize_text_field($_POST['g-recaptcha-response']);  //Limpia el dato recibido para asegurarse de que no contenga código malicioso.
             $secret_key = get_option('mpp_secret_key', '');
     
             // Hacer la solicitud a la API de Google reCAPTCHA
@@ -273,12 +273,14 @@ class MPP_Form_Handler {
      * Limitar la frecuencia de envío del formulario
      */
     private function mpp_limitar_frecuencia_envio($correo) {
+        //Creamos una clave única para almacenar datos temporales en la BBDD. md5 genera un hash a partir del correo.
         $transient_key = 'mpp_ultimo_envio_' . md5($correo);
         $ultima_solicitud = get_transient($transient_key);
 
         if ($ultima_solicitud) {
             // Obtener el tiempo restante en segundos
             $time_remaining = get_option("_transient_timeout_{$transient_key}") - current_time('timestamp');
+            //Si aún queda tiempo antes de que el usuario pueda enviar el formulario, devuelve el tiempo restante.
             return $time_remaining > 0 ? $time_remaining : false;
         }
 
@@ -375,9 +377,9 @@ class MPP_Form_Handler {
     
         // Procesar actualizaciones de configuración general
         if (isset($_POST['mpp_form_submitted']) && $_POST['mpp_form_submitted'] == 'general') {
-            check_admin_referer('mpp_formulario_configuracion_general', 'mpp_nonce_config_general');
+            check_admin_referer('mpp_formulario_configuracion_general', 'mpp_nonce_config_general'); //Verifica un token nonce de seguridad para asegurarse de que la solicitud venga de la misma página.
     
-            // Sanear los datos
+            // Sanear los datos para eliminar cualquier carácter no deseado.
             $site_key = sanitize_text_field($_POST['mpp_site_key']);
             $secret_key = sanitize_text_field($_POST['mpp_secret_key']);
     
@@ -406,7 +408,7 @@ class MPP_Form_Handler {
                         continue; // Saltar este campo, no lo incluirá en los campos actualizados
                     }
     
-                    // Sanitizar y validar cada campo
+                    // Sanea el ID del campo y genera una versión segura que pueda usarse como clave en el array.
                     $raw_id = sanitize_text_field($field['id']);
                     $sanitized_id = sanitize_title($raw_id);
     
@@ -421,7 +423,7 @@ class MPP_Form_Handler {
                         continue;
                     }
     
-                    // Validar unicidad del `id`
+                    // Validar que no haya duplicados en el `id`.
                     if (array_key_exists($sanitized_id, $updated_fields)) {
                         add_settings_error(
                             'mpp_form_fields',
@@ -437,7 +439,7 @@ class MPP_Form_Handler {
                     $field_required = isset($field['required']) ? 1 : 0;
                     $field_options = isset($field['options']) ? array_map('sanitize_text_field', explode(',', $field['options'])) : array();
                     $field_order = intval($field['order']);
-    
+                    //Almacenamos los campos actualizados. 
                     $updated_fields[$sanitized_id] = array(
                         'id' => $sanitized_id,
                         'label' => $field_label,
@@ -457,7 +459,7 @@ class MPP_Form_Handler {
             }
         }
     
-        // Obtener campos personalizados actuales
+        // Obtener campos personalizados actuales para mostrarlos en la página de configuración.
         $form_fields = get_option('mpp_form_fields', array());
     
         // Obtener las configuraciones generales actuales

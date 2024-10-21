@@ -1,12 +1,11 @@
-// formulario.js
-
 document.addEventListener('DOMContentLoaded', function () {
     const form = document.querySelector('.mpp-form');
 
+    //Si el formulario existe...
     if (form) {
-        form.addEventListener('submit', function (e) {
+        form.addEventListener('submit', function (e) {  //Se ejecuta cuando se intenta enviar.
             let valid = true;
-            let messages = [];
+            let messages = [];  //Para almacenar los mensajes de error.
 
             // Validar el campo Nombre
             const nombre = document.getElementById('mpp_nombre');
@@ -49,7 +48,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
 
             // Validar reCAPTCHA
-            const recaptchaResponse = grecaptcha.getResponse();
+            const recaptchaResponse = grecaptcha.getResponse(); //Obtenemos el valor del token cuando el usuario lo completa.
             if (recaptchaResponse.length === 0) {
                 valid = false;
                 messages.push('Por favor, verifica que no eres un robot.');
@@ -70,9 +69,9 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 
-
+// Validar que se acepten los términos y condiciones antes de enviar el formulario.
 jQuery(document).ready(function($) {
-    // Validar que se acepten los términos y condiciones antes de enviar
+    
     $('.mpp-form').on('submit', function(e) {
         if ($('#terminos').length && !$('#terminos').is(':checked')) {
             alert('Por favor, acepta los términos y condiciones.');

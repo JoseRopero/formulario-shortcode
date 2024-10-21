@@ -4,13 +4,13 @@
  * Plugin URI: https://tusitio.com/
  * Description: Un plugin mejorado que inserta un formulario mediante un shortcode con seguridad nonce, envío de correos y estilos CSS personalizados.
  * Version: 2.0
- * Author: Tu Nombre
+ * Author: Jose Manuel Ropero
  * Author URI: https://tusitio.com/
  * License: GPL2
  * Text Domain: formulario-shortcode
  */
 
-// Evitar el acceso directo
+// Evitar el acceso directo fuera de WordPress
 if (!defined('ABSPATH')) {
     exit;
 }
@@ -19,13 +19,14 @@ if (!defined('ABSPATH')) {
 define('MPP_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('MPP_PLUGIN_URL', plugin_dir_url(__FILE__));
 
-// Incluir la clase manejadora del formulario
+// Incluir la clase manejadora del formulario, maneja toda la lógica.
 require_once MPP_PLUGIN_DIR . 'includes/class-form-handler.php';
 
 // Instanciar la clase y activar el plugin
 function mpp_init_form_handler() {
     $form_handler = new MPP_Form_Handler();
 }
+//hook para inicializar el formulario cuando se carguen todos los plugins.
 add_action('plugins_loaded', 'mpp_init_form_handler');
 
 // Registrar el hook de activación correctamente
