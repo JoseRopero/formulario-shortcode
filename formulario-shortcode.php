@@ -1,11 +1,9 @@
 <?php
 /**
  * Plugin Name: Formulario Shortcode Mejorado
- * Plugin URI: https://tusitio.com/
  * Description: Un plugin mejorado que inserta un formulario mediante un shortcode con seguridad nonce, envío de correos y estilos CSS personalizados.
  * Version: 2.0
  * Author: Jose Manuel Ropero
- * Author URI: https://tusitio.com/
  * License: GPL2
  * Text Domain: formulario-shortcode
  */
